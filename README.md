@@ -7,3 +7,4 @@
 SOURCE SCRAPPING : 
 - Mavel Developer : https://developer.marvel.com/
 - MyAnimeList : https://myanimelist.net/apiconfig/references/api/v2#tag/manga
+- MySQL BDD
