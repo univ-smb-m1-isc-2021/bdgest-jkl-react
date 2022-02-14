@@ -1,3 +1,4 @@
+MindMap
 @startmindmap
 * Catalogue
 ** Visu Album
@@ -11,4 +12,31 @@
 
 *** Suivi Auteur/BD
 ** Home Page
+@endmindmap
+
+@startmindmap
+* Faire Schéma bdd
+** CRUD User
+*** Login
+*** Ajout Favorie
+*** Ajout à la Collection
+
+** Peupler bdd Catalogue
+*** CRUD
+*** Vérifier Info Scrapper
+**** Récupérer Data Marvel
+**** Récupérer Data MyAnimeList
+
+** Peupler bdd Auteur
+*** CRUD
+**** API
+@endmindmap
+
+@startmindmap
+* User
+** Home page
+*** Inscription
+** Utilisateur connecté
+*** Home Page
+
 @endmindmap
