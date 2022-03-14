@@ -1,3 +1,4 @@
 .idea
 bdgest.code-workspace
 react-bdgest/node_modules
+lib/
