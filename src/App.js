@@ -9,7 +9,6 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <input type="button" class="button is-info" value="Bonjouir"/>
         <MyComp/>
       </header>
     </div>
