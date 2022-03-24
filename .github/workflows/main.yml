@@ -23,5 +23,5 @@ jobs:
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
             registry: docker.pkg.github.com
-            repository: univ-smb-m1-isc-2021/bdgest-jkl-react/main
+            repository: univ-smb-m1-isc-2021/bdgest-jkl-react/bdgest-jkl-react-main
             tags: latest
