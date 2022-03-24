@@ -1,4 +1,4 @@
-# BDGestG1
+# bdgest-jkl-react
 ## BDGest from group : 
 ### LACERENZA Loris
 ### KHIAL Omar 
