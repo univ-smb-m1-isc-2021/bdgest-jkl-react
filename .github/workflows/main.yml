@@ -13,15 +13,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag bd-gest-jkl-react
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag bd-gest-jkl-react
 
-    - name: Push to GitHub Packages
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: univ-smb-m1-isc-2021/bdgest-jkl-react/main
-          tags: latest
+      - name: Push to GitHub Packages
+          uses: docker/build-push-action@v1
+          with:
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}
+            registry: docker.pkg.github.com
+            repository: univ-smb-m1-isc-2021/bdgest-jkl-react/main
+            tags: latest
