@@ -1,5 +1,1 @@
-.idea
-bdgest.code-workspace
-react-bdgest/node_modules
-lib/
-spring-bd/.idea
+node_modules/
