@@ -2,12 +2,13 @@ import EmailTwoToneIcon from '@mui/icons-material/EmailTwoTone';
 import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import form from '../css/form.css';
 
 export default function Connexion(props) {
     return (
     <>
 
-    <div>
+    <div className='form-width'>
         <form>
             <div class="box">
                 <div class="field">
