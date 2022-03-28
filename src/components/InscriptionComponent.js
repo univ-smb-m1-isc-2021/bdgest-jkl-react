@@ -2,11 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
 import EmailTwoToneIcon from '@mui/icons-material/EmailTwoTone';
-
+import HeaderComponent from './HeaderComponent';
 
 export default function Inscription(props) {
     return (
         <>
+            <HeaderComponent />
             <div>
                 <form>
                     <div class="box">
