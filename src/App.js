@@ -1,16 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import './scss/App.scss';
 import 'bulma/css/bulma.min.css';
-import {MyComp} from './MyComp';
+import {MyComp} from './components/MyComp';
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <MyComp/>
+        <h1 className="text-3xl font-bold underline">
+        Hello world!
+      </h1>
       </header>
+
     </div>
   );
 }
