@@ -1,0 +1,16 @@
+#bodyAlbum{
+    width: 50%;
+    align-items: center;
+}
+
+.el{
+    flex: 1;
+}
+
+#sideInformation{
+    overflow: auto;
+}
+
+#image{
+    height: 50vh;
+}
