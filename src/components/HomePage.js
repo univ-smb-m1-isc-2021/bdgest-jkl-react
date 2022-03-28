@@ -1,9 +1,8 @@
 import React from 'react';
+import HeaderComponent from './HeaderComponent';
 
 export default function HomePage(param) { 
     return(
-        <div>
-            <h1>HomePage</h1>
-        </div>
+        <HeaderComponent/>
     )
  }

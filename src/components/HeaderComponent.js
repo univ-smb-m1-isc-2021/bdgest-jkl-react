@@ -34,13 +34,11 @@ export default function HeaderComponent() {
                     <div class="navbar-end">
                         <div class="navbar-item">
 
-                            <div class="control has-icons-left has-icons-right">
-                                <input class="input is-medium" type="text" placeholder="CHercher un album ou un auteur" />
-                                <span class="icon is-left">
-                                    <i class="fas fa-envelope"></i>
-                                </span>
+                            <div class="control has-icons-right">
+                                <input class="input is-medium" type="text" placeholder="Chercher un album" />
+
                                 <span class="icon is-right">
-                                    <SearchIcon style={{trasform:rotate(90)}}/>
+                                    <SearchIcon style={{trasform:"rotate(90deg)"}}/>
                                 </span>
                             </div>
 

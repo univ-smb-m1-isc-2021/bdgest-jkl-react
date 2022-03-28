@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
 import EmailTwoToneIcon from '@mui/icons-material/EmailTwoTone';
 import HeaderComponent from './HeaderComponent';
+import form from '../css/form.css';
 
 export default function Inscription(props) {
     return (
         <>
             <HeaderComponent />
-            <div>
+            <div className='form-width'>
                 <form>
                     <div class="box">
                         <div class="field">
