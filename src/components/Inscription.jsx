@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
-import LockIcon from '@mui/icons-material/Lock';
+import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
+import EmailTwoToneIcon from '@mui/icons-material/EmailTwoTone';
+
 
 export default function Inscription(props) {
     return (
@@ -35,7 +36,7 @@ export default function Inscription(props) {
                             <p class="control has-icons-left">
                                 <input class="input" type="email" placeholder="Email" />
                                 <span class="icon is-small is-left">
-                                    <AlternateEmailIcon />
+                                    <EmailTwoToneIcon />
                                 </span>
                             </p>
                         </div>
@@ -45,7 +46,7 @@ export default function Inscription(props) {
                             <p class="control has-icons-left">
                                 <input class="input" type="password" placeholder="Password" />
                                 <span class="icon is-small is-left">
-                                    <LockIcon />
+                                    <LockTwoToneIcon />
                                 </span>
                             </p>
                         </div>
@@ -56,7 +57,7 @@ export default function Inscription(props) {
                                 <p class="control has-icons-left">
                                     <input class="input" type="password" placeholder="Password" />
                                     <span class="icon is-small is-left">
-                                        <LockIcon />
+                                        <LockTwoToneIcon />
                                     </span>
                                 </p>
                             </div>

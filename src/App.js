@@ -1,6 +1,6 @@
 import './scss/App.scss';
 import 'bulma/css/bulma.min.css';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import {MyComp} from './components/MyComp';
 import Connexion from './components/Connexion';
 import Inscription from './components/Inscription';

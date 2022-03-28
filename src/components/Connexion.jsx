@@ -1,5 +1,6 @@
-import {AlternateEmail, Lock} from '@mui/icons-material';
-import React, { Component } from 'react';
+import EmailTwoToneIcon from '@mui/icons-material/EmailTwoTone';
+import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Connexion(props) {
@@ -14,7 +15,7 @@ export default function Connexion(props) {
                     <p class="control has-icons-left">
                         <input class="input" type="email" id="email" placeholder="Email" />
                         <span class="icon is-small is-left">
-                            <AlternateEmail/>
+                            <EmailTwoToneIcon/>
                         </span>
                     </p>
                 </div>
@@ -24,7 +25,7 @@ export default function Connexion(props) {
                     <p class="control has-icons-left">
                         <input class="input" type="password" id="password" placeholder="Password" />
                         <span class="icon is-small is-left">
-                            <Lock/>
+                            <LockTwoToneIcon/>
                         </span>
                     </p>
                 </div>
