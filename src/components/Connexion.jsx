@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+import EmailTwoToneIcon from '@mui/icons-material/EmailTwoTone';
+import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Connexion(props) {
     return (
@@ -12,7 +15,7 @@ export default function Connexion(props) {
                     <p class="control has-icons-left">
                         <input class="input" type="email" id="email" placeholder="Email" />
                         <span class="icon is-small is-left">
-                            <i class="fas fa-envelope"></i>
+                            <EmailTwoToneIcon/>
                         </span>
                     </p>
                 </div>
@@ -22,7 +25,7 @@ export default function Connexion(props) {
                     <p class="control has-icons-left">
                         <input class="input" type="password" id="password" placeholder="Password" />
                         <span class="icon is-small is-left">
-                            <i class="fas fa-lock"></i>
+                            <LockTwoToneIcon/>
                         </span>
                     </p>
                 </div>
@@ -33,6 +36,7 @@ export default function Connexion(props) {
                             Connexion
                         </button>
                     </p>
+                    <Link to="/inscription">Je n'ai pas de compte</Link>
                 </div>
             </div>
         </form>
