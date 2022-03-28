@@ -18,7 +18,7 @@ export class MyComp extends React.Component {
 
     getData( path )
     {
-      fetch(`http://localhost:8080/${path}`)
+      fetch(`https://bdgest-jkl-api.oups.net/${path}`)
       .then(res => res.json())
       .then(
         (result) => {
