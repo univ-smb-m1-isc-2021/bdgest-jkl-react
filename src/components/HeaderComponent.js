@@ -34,7 +34,7 @@ export default function HeaderComponent() {
                     <div class="navbar-end">
                         <div class="navbar-item">
 
-                            <div class="control has-icons-right">
+                            <div class="mr-5 control has-icons-right">
                                 <input class="input is-medium" type="text" placeholder="Chercher un album" />
 
                                 <span class="icon is-right">
@@ -44,10 +44,10 @@ export default function HeaderComponent() {
 
                             <div class="buttons">
                                 <a class="button is-primary">
-                                    <strong>Sign up</strong>
+                                    <strong>Inscription</strong>
                                 </a>
                                 <a class="button is-light">
-                                    Log in
+                                    Connexion
                                 </a>
                             </div>
                         </div>
