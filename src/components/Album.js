@@ -12,7 +12,7 @@ function Album(props) {
             <HeaderComponent />
             <div className="columns is-vcentered">
                 <div id="bodyAlbum" className="column is-8 m-5 box is-flex">
-                    <img id='image' className='el' src={tintin} alt="Placeholder image" />
+                    <img id='image' className='el' src={tintin} alt="album cover" />
                     <div id='sideInformation' className=' m-5 el'>
                         <div class="tags has-addons">
                             <span class="tag is-dark is-medium">Série</span>
