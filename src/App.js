@@ -6,11 +6,9 @@ import Inscription from './components/InscriptionComponent';
 import HomePage from './components/HomePage';
 import Album from './components/Album';
 import AlbumList from './components/AlbumList';
-import {getAllAlbums} from './service/BDGestService';
 
 function App() {
   
-  getAllAlbums();
   return (
     <div id='body'>
       <Routes>

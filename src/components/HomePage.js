@@ -7,12 +7,7 @@ export default function HomePage(param) {
     return(
         <>
             <HeaderComponent/>
-            <AlbumCard
-                id={0}
-                titre="Tintin au tibet"
-                image={tintin} 
-                link={"https://www.tintin.com/fr/albums/tintin-au-tibet"}
-                description={"BD de tintin au tibet"}/>
+            <AlbumCard album={{id: 1, titre: 'Tintin et Loris', serie: '2', auteur: 'auteur', numero: '65'}}/>
         </>
     )
 }
