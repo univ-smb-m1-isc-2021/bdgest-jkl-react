@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from './../img/logo.png';
-import SearchIcon from '@mui/icons-material/Search';
 
 export default function HeaderComponent() {
 
@@ -22,9 +21,9 @@ export default function HeaderComponent() {
 
                 <div id="navbarBasicExample" class="navbar-menu">
                     <div class="navbar-start">
-                        <a class="navbar-item">
-                            Albums
-                        </a>
+                        <Link to="/catalogue" class="navbar-item">
+                                Albums
+                        </Link>
 
                         <a class="navbar-item">
                             Collections
@@ -33,15 +32,6 @@ export default function HeaderComponent() {
 
                     <div class="navbar-end">
                         <div class="navbar-item">
-
-                            <div class="mr-5 control has-icons-right">
-                                <input class="input is-medium" type="text" placeholder="Chercher un album" />
-
-                                <span class="icon is-right">
-                                    <SearchIcon style={{trasform:"rotate(90deg)"}}/>
-                                </span>
-                            </div>
-
                             <div class="buttons">
                                 <a class="button is-primary">
                                     <strong>Inscription</strong>

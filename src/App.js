@@ -5,7 +5,7 @@ import Connexion from './components/ConnexionComponent';
 import Inscription from './components/InscriptionComponent';
 import HomePage from './components/HomePage';
 import Album from './components/Album';
-import AlbumList from './components/AlbumList';
+import CatalogPage from './components/CatalogPage';
 
 function App() {
   
@@ -16,7 +16,7 @@ function App() {
         <Route path="/album/:id" element={<Album />} />
         <Route path="/login" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
-        <Route path="/liste" element={<AlbumList />} />
+        <Route path="/catalogue" element={<CatalogPage />} />
       </Routes>
     </div>
   );

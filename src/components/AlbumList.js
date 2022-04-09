@@ -63,14 +63,12 @@ if( loading ){
 if(data.length==0){
   return(
     <>
-      <HeaderComponent/>
       <p className='title'>Aucun albums dans la base ...</p>
     </>
   )
 }
   return (
       <>
-        <HeaderComponent/>
         <div class="mr-5 control has-icons-right" id='searchBar'>
                                 <input class="input is-medium" type="text" placeholder="Chercher un album" onChange={handleSearchTerm} />
 
