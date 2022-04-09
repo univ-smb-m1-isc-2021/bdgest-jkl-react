@@ -3,6 +3,8 @@ import AlbumCard from './AlbumCard';
 import HeaderComponent from './HeaderComponent';
 import '../css/AlbumList.css'
 import { getAllAlbums } from '../service/BDGestService';
+import SearchIcon from '@mui/icons-material/Search';
+
 
 function useFetchData(){
   const [loading, setLoading] = React.useState([]);
@@ -22,28 +24,33 @@ function useFetchData(){
   return { loading, data };
 }
 
+
+function Search(){
+
+}
+
 export default function AlbumList(props) {
-/*let res =  getAllAlbums();
-let albums = [];
-let albums = [];
-albums.push({id: 1, titre: 'Tintin et Loris', serie: '2', auteur: 'auteur', numero: '65'});
-albums.push({id: 2, titre: 'Loris au toilette', serie: '2', auteur: 'auteur2', numero: '69'});
-albums.push({id: 3, titre: 'Loris mange du poisson', serie: '2', auteur: 'auteur3', numero: '100'});
-albums.push({id: 4, titre: 'Loris mange du poisson', serie: '2', auteur: 'auteur3', numero: '100'});
-albums.push({id: 5, titre: 'Loris mange du poisson', serie: '2', auteur: 'auteur3', numero: '100'});
-albums.push({id: 6, titre: 'Loris mange du poisson', serie: '2', auteur: 'auteur3', numero: '100'});
-albums.push({id: 7, titre: 'Loris mange du poisson', serie: '2', auteur: 'auteur3', numero: '100'});
-albums.push({id: 8, titre: 'Loris mange du poisson', serie: '2', auteur: 'auteur3', numero: '100'});
-albums.push({id: 9, titre: 'Loris mange du poisson', serie: '2', auteur: 'auteur3', numero: '100'});
-albums.push({id: 10, titre: 'Loris mange du poisson', serie: '2', auteur: 'auteur3', numero: '100'});
-albums.push({id: 11, titre: 'Loris mange du poisson', serie: '2', auteur: 'auteur3', numero: '100'});
-albums.push({id: 12, titre: 'Loris mange du poisson', serie: '2', auteur: 'auteur3', numero: '100'});
-albums.push({id: 13, titre: 'Loris mange du poisson', serie: '2', auteur: 'auteur3', numero: '100'});
-albums.push({id: 14, titre: 'Loris mange du poisson', serie: '2', auteur: 'auteur3', numero: '100'});*/
-
-
 const{loading, data} = useFetchData();
+////TEST RECHERCHE///////
+const [datas, setDatas] = React.useState([]);
+const [searchTerm, setSearchTerm] = React.useState("");
 
+React.useEffect(() => {
+  fetch('https:jsonplaceholder.typicode.com/posts')
+  .then(res => res.json())
+  .then(json =>setDatas(json));
+},[]);
+
+console.log(datas);
+
+const handleSearchTerm = (e) => {
+  let value = e.target.value;
+  setSearchTerm(value);
+};
+
+console.log(searchTerm);
+
+///////AFFICHAGE RESULTAT/////////////////
 if( loading ){
   return (
     <>
@@ -64,13 +71,43 @@ if(data.length==0){
   return (
       <>
         <HeaderComponent/>
+        <div class="mr-5 control has-icons-right" id='searchBar'>
+                                <input class="input is-medium" type="text" placeholder="Chercher un album" onChange={handleSearchTerm} />
+
+                                <span class="icon is-right">
+                                    <SearchIcon style={{trasform:"rotate(90deg)"}}/>
+                                </span>
+                            </div>
         <div className="albumList">
-                {data.map((item)=>{
-                    return  <AlbumCard
-                                album={item}
+                {data.filter((val )=>{
+      return val.titre.toLowerCase().includes(searchTerm.toLowerCase());
+    }).map((val)=>{
+                    return  <AlbumCard key={val.id}
+                                album={val}
                                 />
                 })}
         </div>
     </>
   );
+  /////////////////////////////////////////////////////////////////////
+  /*return(<>
+  
+  <div class="mr-5 control has-icons-right" id='searchBar'>
+                                <input class="input is-medium" type="text" placeholder="Chercher un album" onChange={handleSearchTerm}/>
+
+                                <span class="icon is-right">
+                                    <SearchIcon style={{trasform:"rotate(90deg)"}}/>
+                                </span>
+                            </div>
+
+  <div>
+    {datas.filter((val )=>{
+      return val.title.toLowerCase().includes(searchTerm.toLowerCase());
+    }).map((val) => {
+      return <p key={val.id}>{val.title}</p>;
+    })}
+  </div>
+  
+  </>);*/
+  
 }

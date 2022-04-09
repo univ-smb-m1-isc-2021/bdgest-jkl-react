@@ -6,3 +6,9 @@
 p{
     margin: 0 auto !important;
 }
+
+#searchBar{
+    margin: 0 auto !important;
+    width: 50%;
+    margin-bottom: 50px !important;
+}
