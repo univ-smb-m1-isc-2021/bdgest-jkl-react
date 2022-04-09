@@ -48,7 +48,7 @@ if( loading ){
   return (
     <>
       <HeaderComponent/>
-      <div>Loading...</div>
+      <p className='title'>Loading...</p>
     </>
   );
 }
@@ -57,7 +57,7 @@ if(data.length==0){
   return(
     <>
       <HeaderComponent/>
-      <p>Aucun albums dans la base ...</p>
+      <p className='title'>Aucun albums dans la base ...</p>
     </>
   )
 }

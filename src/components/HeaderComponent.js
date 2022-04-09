@@ -27,7 +27,7 @@ export default function HeaderComponent() {
                         </a>
 
                         <a class="navbar-item">
-                            Favoris
+                            Collections
                         </a>
                     </div>
 
