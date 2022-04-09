@@ -7,7 +7,7 @@ export default function AlbumCard(props) {
       <div className="card">
         <div className="card-image">
           <img src={props.image} width="200" alt={props.title} />
-          <span className="card-title">{props.title}</span>
+          <span className="card-title">{props.titre}</span>
         </div>
         <div className="card-content">
           <p>{props.description}</p>
