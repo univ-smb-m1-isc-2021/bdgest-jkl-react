@@ -6,6 +6,9 @@ import Inscription from './components/InscriptionComponent';
 import HomePage from './components/HomePage';
 import Album from './components/Album';
 import CatalogPage from './components/CatalogPage';
+import SeriePage from './components/SeriePage';
+import AuteurPage from './components/AuteursPage';
+import Serie from './components/Serie';
 
 function App() {
   
@@ -14,9 +17,12 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/album/:id" element={<Album />} />
+        <Route path="/serie/:id" element={<Serie />} />
         <Route path="/login" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/catalogue" element={<CatalogPage />} />
+        <Route path="/serie" element={<SeriePage/>} />
+        <Route path="/auteur" element={<AuteurPage/>} />
       </Routes>
     </div>
   );

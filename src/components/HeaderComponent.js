@@ -25,6 +25,12 @@ export default function HeaderComponent() {
                         <Link to="/catalogue" class="navbar-item">
                                 Albums
                         </Link>
+                        <Link to="/serie" class="navbar-item">
+                                Séries
+                        </Link>
+                        <Link to="/auteur" class="navbar-item">
+                            Auteurs
+                        </Link>
 
                     {sessionStorage.getItem("connected") ?
                         <a class="navbar-item">

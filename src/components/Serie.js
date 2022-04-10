@@ -1,8 +1,8 @@
 import React from 'react';
-import '../css/Album.css'
+import '../css/Serie.css'
 import HeaderComponent from './HeaderComponent';
 import { useLocation } from 'react-router-dom';
-import { getAlbumById } from '../service/BDGestService';
+import { getSerieById } from '../service/BDGestService';
 
 
 
@@ -12,7 +12,7 @@ function useFetchData(id){
   
     React.useEffect(() => {
       setLoading(true);
-      getAlbumById(id).then(data => {
+      getSerieById(id).then(data => {
         setData(data);
         setLoading(false);
         console.log(data);
@@ -25,7 +25,7 @@ function useFetchData(id){
     return { loading, data };
   }
 
-function Album() {
+function Serie() {
     const location = useLocation().pathname.slice(7);
     const{loading, data} = useFetchData(location);
 
@@ -42,7 +42,7 @@ function Album() {
         return(
           <>
             <HeaderComponent/>
-            <p className='title'>Album introuvable ...</p>
+            <p className='title'>Serie introuvable ...</p>
           </>
         )
       }
@@ -54,30 +54,19 @@ function Album() {
                     <div id='sideInformation' className=' m-5 el'>
                         <div class="tags has-addons">
                             <span class="tag is-dark is-medium">Série</span>
-                            <span class="tag is-info is-medium">{data.serie}</span>
+                            <span class="tag is-danger is-medium">{data.titre}</span>
                         </div>
                         <div class="tags has-addons">
-                            <span class="tag is-dark is-medium">Titre</span>
-                            <span class="tag is-info is-medium">{data.titre}</span>
-                        </div>
-                        <div class="tags has-addons">
-                            <span class="tag is-dark is-medium">Numéro</span>
-                            <span class="tag is-info is-medium">{data.numero}</span>
+                            <span class="tag is-dark is-medium">Nombre d'albums</span>
+                            <span class="tag is-danger is-medium">{data.nbTomes}</span>
                         </div>
                         <div class="tags has-addons">
                             <span class="tag is-dark is-medium">Auteur</span>
-                            <span class="tag is-info is-medium">{data.auteur}</span>
+                            <span class="tag is-danger is-medium">{data.auteur.nom} {data.auteur.prenom}</span>
                         </div>
-                        <div class="tags has-addons">
-                            <span class="tag is-dark is-medium">ISBN</span>
-                            <span class="tag is-info is-medium">{data.isbn}</span>
-                        </div>
-                        <div class="tags has-addons">
-                            <span class="tag is-dark is-medium">Date</span>
-                            <span class="tag is-info is-medium">{data.date}</span>
-                        </div>
+
                         <div className='content'>
-                            <h2 className='tag is-info is-medium'>Description</h2>
+                            <h2 className='tag is-danger is-medium'>Description</h2>
                             <blockquote id='descriptionAlbum'>{data.description}</blockquote>
                         </div>
                     </div>
@@ -85,4 +74,4 @@ function Album() {
         </>
     )
 }
-export default Album;
+export default Serie;

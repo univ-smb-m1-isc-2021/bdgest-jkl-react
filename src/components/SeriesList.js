@@ -1,7 +1,6 @@
 import React from 'react';
-import AlbumCard from './AlbumCard';
-import '../css/AlbumList.css'
-import { getAllAlbums } from '../service/BDGestService';
+import SerieCard from './SerieCard';
+import { getAllSeries } from '../service/BDGestService';
 import SearchIcon from '@mui/icons-material/Search';
 
 
@@ -11,7 +10,7 @@ function useFetchData(){
 
   React.useEffect(() => {
     setLoading(true);
-    getAllAlbums().then(data => {
+    getAllSeries().then(data => {
       setData(data);
       setLoading(false);
     }).catch(error => {
@@ -25,9 +24,8 @@ function useFetchData(){
 
 
 
-export default function AlbumList() {
+export default function SerieList(props) {
 const{loading, data} = useFetchData();
-////TEST RECHERCHE///////
 const [datas, setDatas] = React.useState([]);
 const [searchTerm, setSearchTerm] = React.useState("");
 
@@ -45,13 +43,13 @@ if( loading ){
   return (
     <>
       <div class="mr-5 control has-icons-right" id='searchBar'>
-                          <input class="input is-medium" type="text" placeholder="Chercher un album" onChange={handleSearchTerm} />
+                          <input class="input is-medium" type="text" placeholder="Chercher un série" onChange={handleSearchTerm} />
 
                           <span class="icon is-right">
                               <SearchIcon style={{trasform:"rotate(90deg)"}}/>
                           </span>
                       </div>
-      <p className='title'>Loading...</p>
+      <p className='title'>Chargement...</p>
     </>
   );
 }
@@ -66,7 +64,7 @@ if(data.length==0){
                               <SearchIcon style={{trasform:"rotate(90deg)"}}/>
                           </span>
                       </div>
-      <p className='title'>Aucun albums dans la base ...</p>
+      <p className='title'>Aucune serie dans la base ...</p>
     </>
   )
 }
@@ -79,36 +77,17 @@ if(data.length==0){
                                     <SearchIcon style={{trasform:"rotate(90deg)"}}/>
                                 </span>
                             </div>
-        <div className="albumList">
+        <div className="serieList">
                 {data.filter((val )=>{
       return val.titre.toLowerCase().includes(searchTerm.toLowerCase());
     }).map((val)=>{
-                    return  <AlbumCard key={val.id}
-                                album={val}
+                    return  <SerieCard key={val.id}
+                                serie={val}
                                 />
                 })}
         </div>
     </>
   );
-  /////////////////////////////////////////////////////////////////////
-  /*return(<>
-  
-  <div class="mr-5 control has-icons-right" id='searchBar'>
-                                <input class="input is-medium" type="text" placeholder="Chercher un album" onChange={handleSearchTerm}/>
 
-                                <span class="icon is-right">
-                                    <SearchIcon style={{trasform:"rotate(90deg)"}}/>
-                                </span>
-                            </div>
-
-  <div>
-    {datas.filter((val )=>{
-      return val.title.toLowerCase().includes(searchTerm.toLowerCase());
-    }).map((val) => {
-      return <p key={val.id}>{val.title}</p>;
-    })}
-  </div>
-  
-  </>);*/
   
 }
