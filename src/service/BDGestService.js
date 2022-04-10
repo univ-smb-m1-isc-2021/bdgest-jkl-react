@@ -18,3 +18,17 @@ export async function getAlbumById(id) {
     console.log(data);
     return data;
 }
+
+export async function signin(pseudo,email,password) {
+    const response = await fetch(API_URL+`/compte/signup/`+pseudo+"/"+email+"/"+password);
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+
+export async function deleteAccount(id) {
+    const response = await fetch(API_URL+`/compte/delete/`+id);
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
