@@ -44,6 +44,7 @@ export async function signin(emailorpassword,password) {
     });
 
     const data = await response;
+    getSignedUser(emailorpassword);
     console.log(data);
     return data;
 }
@@ -81,4 +82,21 @@ export async function getCollection(idCompte){
     const data = await response.json();
     console.log(data);
     return data;
+}
+
+export async function getSignedUser(mailorpseudo){
+        const response = await fetch(API_URL+"/compte/getByEmailOrPseudo/"+mailorpseudo);
+        const data = await response.json();
+        console.log(data);
+        sessionStorage.setItem("user",JSON.stringify(data));
+        sessionStorage.setItem("connected",true);
+        window.location.reload(false);
+
+        return data;
+}
+
+export function disconnect(){
+    window.location.reload(false);
+
+    sessionStorage.clear();
 }

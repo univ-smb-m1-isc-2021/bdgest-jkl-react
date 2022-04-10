@@ -3,6 +3,8 @@ import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import form from '../css/form.css';
+import HeaderComponent from './HeaderComponent';
+
 import { signin } from '../service/BDGestService';
 
 function connect(){
@@ -15,7 +17,7 @@ function connect(){
 export default function Connexion(props) {
     return (
     <>
-
+    <HeaderComponent />
     <div className='form-width'>
             <div class="box">
                 <div class="field">
@@ -40,9 +42,9 @@ export default function Connexion(props) {
 
                 <div class="field">
                     <p class="control">
-                        <button class="button is-success" onClick={connect}>
+                        <Link to="/" class="button is-success" onClick={connect}>
                             Connexion
-                        </button>
+                        </Link>
                     </p>
                     <Link to="/inscription">Je n'ai pas de compte</Link>
                 </div>

@@ -69,9 +69,9 @@ export default function Inscription(props) {
 
                     <div class="field">
                         <p class="control">
-                            <button class="button is-success" onClick={createAccount}>
+                            <Link to="/" class="button is-success" onClick={createAccount}>
                                 Creation du compte
-                            </button>
+                            </Link>
                         </p>
                     </div>
                     <Link to="/login">J'ai déjà un compte</Link>
