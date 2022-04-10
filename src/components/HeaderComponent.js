@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from './../img/logo.png';
+import {disconnect} from '../service/BDGestService';
 
 export default function HeaderComponent() {
 
@@ -31,20 +32,35 @@ export default function HeaderComponent() {
                             Auteurs
                         </Link>
 
+                    {sessionStorage.getItem("connected") ?
                         <a class="navbar-item">
                             Collections
                         </a>
+                        :
+                        null
+                    }
                     </div>
 
                     <div class="navbar-end">
                         <div class="navbar-item">
                             <div class="buttons">
-                                <a class="button is-primary">
-                                    <strong>Inscription</strong>
-                                </a>
-                                <a class="button is-light">
-                                    Connexion
-                                </a>
+                                {sessionStorage.getItem("connected") ?
+                                    <div>
+                                        <Link to="/" class="button is-primary" onClick={disconnect}>
+                                            <strong>Deconnection</strong>
+                                        </Link>
+                                    </div>
+
+                                :
+                                    <div>
+                                        <Link to="/Inscription" class="button is-primary">
+                                            <strong>Inscription</strong>
+                                        </Link>
+                                        <Link to="/Login" class="button is-light">
+                                            Connexion
+                                        </Link>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
