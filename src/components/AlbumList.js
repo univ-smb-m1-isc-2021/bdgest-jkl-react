@@ -1,6 +1,5 @@
 import React from 'react';
 import AlbumCard from './AlbumCard';
-import HeaderComponent from './HeaderComponent';
 import '../css/AlbumList.css'
 import { getAllAlbums } from '../service/BDGestService';
 import SearchIcon from '@mui/icons-material/Search';
@@ -54,7 +53,13 @@ console.log(searchTerm);
 if( loading ){
   return (
     <>
-      <HeaderComponent/>
+      <div class="mr-5 control has-icons-right" id='searchBar'>
+                          <input class="input is-medium" type="text" placeholder="Chercher un album" onChange={handleSearchTerm} />
+
+                          <span class="icon is-right">
+                              <SearchIcon style={{trasform:"rotate(90deg)"}}/>
+                          </span>
+                      </div>
       <p className='title'>Loading...</p>
     </>
   );
@@ -63,6 +68,13 @@ if( loading ){
 if(data.length==0){
   return(
     <>
+      <div class="mr-5 control has-icons-right" id='searchBar'>
+                          <input class="input is-medium" type="text" placeholder="Chercher un album" onChange={handleSearchTerm} />
+
+                          <span class="icon is-right">
+                              <SearchIcon style={{trasform:"rotate(90deg)"}}/>
+                          </span>
+                      </div>
       <p className='title'>Aucun albums dans la base ...</p>
     </>
   )

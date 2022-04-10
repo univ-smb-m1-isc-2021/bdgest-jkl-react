@@ -12,19 +12,6 @@ export default function Inscription(props) {
             <div className='form-width'>
                 <form>
                     <div class="box">
-                        <div class="field">
-                            <label class="label">Prénom</label>
-                            <div class="control">
-                                <input class="input" type="text" placeholder="ex: Théo" />
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label class="label">Nom</label>
-                            <div class="control">
-                                <input class="input" type="text" placeholder="ex: Jubard" />
-                            </div>
-                        </div>
 
                         <div class="field">
                             <label class="label">Pseudo</label>
