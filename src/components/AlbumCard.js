@@ -12,10 +12,21 @@ export default function AlbumCard(props) {
           <div className="card">
             <div className="card-image">
               <img src={tintin} width="200" alt={props.album.titre} />
-              <span className="card-title">{props.album.titre}</span>
             </div>
             <div className="card-content">
-              <p>{props.album.description}</p>
+            <div class="tags has-addons">
+                <span class="tag is-dark is-small">Titre</span>
+                <span class="tag is-info is-small">{props.album.titre}</span>
+            </div>
+            <div class="tags has-addons">
+                <span class="tag is-dark is-small">Numéro</span>
+                <span class="tag is-info is-small">{props.album.numero}</span>
+            </div>
+            <div class="tags has-addons">
+                <span class="tag is-dark is-small">ISBN</span>
+                <span class="tag is-info is-small">{props.album.isbn}</span>
+            </div>
+            
             </div>
           </div>
       </Link>
