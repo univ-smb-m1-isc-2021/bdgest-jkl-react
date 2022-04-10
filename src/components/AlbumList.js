@@ -24,9 +24,6 @@ function useFetchData(){
 }
 
 
-function Search(){
-
-}
 
 export default function AlbumList(props) {
 const{loading, data} = useFetchData();

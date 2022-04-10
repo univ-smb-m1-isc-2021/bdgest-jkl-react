@@ -3,6 +3,8 @@ import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import form from '../css/form.css';
+import { signin } from '../service/BDGestService';
+import {getAccount} from '../service/BDGestService';
 
 export default function Connexion(props) {
     return (

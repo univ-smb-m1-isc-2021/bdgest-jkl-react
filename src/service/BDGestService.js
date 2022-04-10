@@ -32,3 +32,31 @@ export async function deleteAccount(id) {
     console.log(data);
     return data;
 }
+
+export async function getAccount(id) {
+    const response = await fetch(API_URL+`/compte/`+id);
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+
+export async function addToCollection(idCompte,idAlbum){
+    const response = await fetch(API_URL+`/compte/`+idCompte+"/addcollection/"+idAlbum);
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+
+export async function deleteFromCollection(idCompte,idAlbum){
+    const response = await fetch(API_URL+`/compte/`+idCompte+"/deletecollection/"+idAlbum);
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+
+export async function getCollection(idCompte){
+    const response = await fetch(API_URL+`/compte/`+idCompte+"/collection");
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
