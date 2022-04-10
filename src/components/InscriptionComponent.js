@@ -4,7 +4,7 @@ import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
 import EmailTwoToneIcon from '@mui/icons-material/EmailTwoTone';
 import HeaderComponent from './HeaderComponent';
 import form from '../css/form.css';
-import {signin} from '../service/BDGestService';
+import {signup} from '../service/BDGestService';
 
 function createAccount(){
     console.log("createAccount");
@@ -15,7 +15,7 @@ function createAccount(){
     console.log(password1);
     console.log(password2);
     if(password1 === password2){
-        signin(pseudo,email,password1);
+        signup(pseudo,email,password1);
     }else{
         alert("Les mots de passe ne correspondent pas");
     }

@@ -31,12 +31,6 @@ const{loading, data} = useFetchData();
 const [datas, setDatas] = React.useState([]);
 const [searchTerm, setSearchTerm] = React.useState("");
 
-React.useEffect(() => {
-  fetch('https:jsonplaceholder.typicode.com/posts')
-  .then(res => res.json())
-  .then(json =>setDatas(json));
-},[]);
-
 console.log(datas);
 
 const handleSearchTerm = (e) => {

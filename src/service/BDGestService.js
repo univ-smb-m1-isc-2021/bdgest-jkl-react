@@ -19,9 +19,31 @@ export async function getAlbumById(id) {
     return data;
 }
 
-export async function signin(pseudo,email,password) {
-    const response = await fetch(API_URL+`/compte/signup/`+pseudo+"/"+email+"/"+password);
-    const data = await response.json();
+export async function signup(pseudo,email,password) {
+    const response = await fetch(API_URL+`/api/auth/signup`,{
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            "username": pseudo,
+            "email": email,
+            "password": password}),
+    });
+
+    const data = await response;
+    console.log(data);
+    return data;
+}
+
+export async function signin(emailorpassword,password) {
+    const response = await fetch(API_URL+`/api/auth/signin`,{
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            "usernameOrEmail": emailorpassword,
+            "password": password}),
+    });
+
+    const data = await response;
     console.log(data);
     return data;
 }
