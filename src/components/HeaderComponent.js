@@ -24,9 +24,9 @@ export default function HeaderComponent() {
                         <Link to="/catalogue" class="navbar-item">
                                 Albums
                         </Link>
-                        <a class="navbar-item">
-                            Séries
-                        </a>
+                        <Link to="/serie" class="navbar-item">
+                                Séries
+                        </Link>
                         <a class="navbar-item">
                             Auteurs
                         </a>

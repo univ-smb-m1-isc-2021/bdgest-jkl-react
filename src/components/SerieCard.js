@@ -11,11 +11,17 @@ export default function SerieCard(props) {
       <Link to={`/serie/${props.serie.id}`}>
           <div className="card">
             <div className="card-image">
-              <img src={tintin} width="200" alt={props.serie.titre} />
+              <img src={props.serie.image} width="200" alt={props.serie.titre} />
             </div>
             <div className="card-content">
-                <p>{props.serie.titre}</p>
-                <p>{props.serie.description}</p>
+            <div class="tags has-addons">
+                <span class="tag is-dark is-small">Titre</span>
+                <span class="tag is-danger is-small">{props.serie.titre}</span>
+            </div>
+            <div class="tags has-addons">
+                <span class="tag is-dark is-small">Catégorie</span>
+                <span class="tag is-danger is-small">{props.serie.categorie}</span>
+            </div>
             </div>
           </div>
       </Link>
