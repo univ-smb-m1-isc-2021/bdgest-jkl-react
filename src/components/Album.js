@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/Album.css'
+import { format } from "date-fns";
 import HeaderComponent from './HeaderComponent';
 import { useLocation } from 'react-router-dom';
 import { getAlbumById } from '../service/BDGestService';
@@ -24,6 +25,12 @@ function useFetchData(id){
   
     return { loading, data };
   }
+
+  function renderDate(date){
+    var date = new Date(date);
+  
+    return format(date, "MMMM do, yyyy");
+    }
 
 function Album() {
     const location = useLocation().pathname.slice(7);
@@ -73,8 +80,8 @@ function Album() {
                             <span class="tag is-info is-medium">{data.isbn}</span>
                         </div>
                         <div class="tags has-addons">
-                            <span class="tag is-dark is-medium">Date</span>
-                            <span class="tag is-info is-medium">{data.date}</span>
+                            <span class="tag is-dark is-medium">Dare de parution</span>
+                            <span class="tag is-info is-medium">{renderDate(data.creation)}</span>
                         </div>
                         <div className='content'>
                             <h2 className='tag is-info is-medium'>Description</h2>
