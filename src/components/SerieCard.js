@@ -11,7 +11,7 @@ export default function SerieCard(props) {
       <Link to={`/serie/${props.serie.id}`}>
           <div className="card">
             <div className="card-image">
-              <img src={props.serie.image} width="200" alt={props.serie.titre} />
+              <img src={props.serie.image} alt={props.serie.titre} />
             </div>
             <div className="card-content">
             <div class="tags has-addons">
