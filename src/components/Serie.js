@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/Serie.css'
+import { format } from "date-fns";
 import HeaderComponent from './HeaderComponent';
 import { useLocation } from 'react-router-dom';
 import { getSerieById } from '../service/BDGestService';
@@ -27,6 +28,13 @@ function useFetchData(id) {
   }, []);
 
   return { loading, data };
+}
+
+
+function renderDate(date) {
+  var date = new Date(date);
+
+  return format(date, "MMMM do, yyyy");
 }
 
 function Serie() {
@@ -68,10 +76,9 @@ function Serie() {
             <span class="tag is-dark is-medium">Auteur</span>
             <span class="tag is-danger is-medium">{data.auteur.nom} {data.auteur.prenom}</span>
           </div>
-
-          <div className='content'>
-            <h2 className='tag is-danger is-medium'>Description</h2>
-            <blockquote id='descriptionAlbum'>{data.description}</blockquote>
+          <div class="tags has-addons">
+            <span class="tag is-dark is-medium">Création</span>
+            <span class="tag is-danger is-medium"> {renderDate(data.debut)}</span>
           </div>
         </div>
       </div>

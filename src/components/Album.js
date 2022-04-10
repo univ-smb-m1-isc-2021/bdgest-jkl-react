@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../css/Album.css'
+import { format } from "date-fns";
 import HeaderComponent from './HeaderComponent';
 import { useLocation } from 'react-router-dom';
 import { getAlbumById } from '../service/BDGestService';
@@ -27,6 +28,12 @@ function useFetchData(id) {
   }, []);
   return { loading, data };
 }
+
+  function renderDate(date){
+    var date = new Date(date);
+  
+    return format(date, "MMMM do, yyyy");
+    }
 
 function Album() {
   const location = useLocation().pathname.slice(7);
