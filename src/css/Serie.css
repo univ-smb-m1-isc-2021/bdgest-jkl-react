@@ -1,0 +1,15 @@
+.serieList{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#albumTitre{
+    margin:0 auto !important;
+    width: fit-content;
+}
+
+#bodySerie{
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}

@@ -5,6 +5,7 @@ import HeaderComponent from './HeaderComponent';
 import { useLocation } from 'react-router-dom';
 import { getSerieById } from '../service/BDGestService';
 import LoadingScreen from './LoadingScreen';
+import AlbumCard from './AlbumCard';
 
 
 
@@ -61,7 +62,7 @@ function Serie() {
   return (
     <>
       <HeaderComponent />
-      <div id="bodyAlbum" className="box is-flex">
+      <div id="bodySerie" className="box is-flex">
         <img id='image' className='el' src={data.image} alt="album cover" />
         <div id='sideInformation' className=' m-5 el'>
           <div class="tags has-addons">
@@ -80,6 +81,16 @@ function Serie() {
             <span class="tag is-dark is-medium">Création</span>
             <span class="tag is-danger is-medium"> {renderDate(data.debut)}</span>
           </div>
+        </div>
+      </div>
+      <div>
+      <h1 id="albumTitre" className='title'>Albums de la série</h1>
+        <div className="serieList">
+          {data.albums.map((val) => {
+            return <AlbumCard key={val.id}
+              album={val}
+            />
+          })}
         </div>
       </div>
     </>
