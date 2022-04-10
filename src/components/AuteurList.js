@@ -1,8 +1,8 @@
 import React from 'react';
-import AlbumCard from './AlbumCard';
 import '../css/AlbumList.css'
-import { getAllAlbums } from '../service/BDGestService';
+import { getAllAlbums, getAllAuteurs } from '../service/BDGestService';
 import SearchIcon from '@mui/icons-material/Search';
+import AuteurCard from './AuteurCard';
 
 
 function useFetchData(){
@@ -11,7 +11,7 @@ function useFetchData(){
 
   React.useEffect(() => {
     setLoading(true);
-    getAllAlbums().then(data => {
+    getAllAuteurs().then(data => {
       setData(data);
       setLoading(false);
     }).catch(error => {
@@ -25,27 +25,22 @@ function useFetchData(){
 
 
 
-export default function AlbumList() {
+export default function AuteurList() {
 const{loading, data} = useFetchData();
-////TEST RECHERCHE///////
 const [datas, setDatas] = React.useState([]);
 const [searchTerm, setSearchTerm] = React.useState("");
-
-console.log(datas);
 
 const handleSearchTerm = (e) => {
   let value = e.target.value;
   setSearchTerm(value);
 };
 
-console.log(searchTerm);
 
-///////AFFICHAGE RESULTAT/////////////////
 if( loading ){
   return (
     <>
       <div class="mr-5 control has-icons-right" id='searchBar'>
-                          <input class="input is-medium" type="text" placeholder="Chercher un album" onChange={handleSearchTerm} />
+                          <input class="input is-medium" type="text" placeholder="Chercher un auteur" onChange={handleSearchTerm} />
 
                           <span class="icon is-right">
                               <SearchIcon style={{trasform:"rotate(90deg)"}}/>
@@ -81,34 +76,14 @@ if(data.length==0){
                             </div>
         <div className="albumList">
                 {data.filter((val )=>{
-      return val.titre.toLowerCase().includes(searchTerm.toLowerCase());
+      return val.nom.toLowerCase().includes(searchTerm.toLowerCase());
     }).map((val)=>{
-                    return  <AlbumCard key={val.id}
-                                album={val}
+                    return  <AuteurCard key={val.id}
+                                auteur={val}
                                 />
                 })}
         </div>
     </>
   );
-  /////////////////////////////////////////////////////////////////////
-  /*return(<>
-  
-  <div class="mr-5 control has-icons-right" id='searchBar'>
-                                <input class="input is-medium" type="text" placeholder="Chercher un album" onChange={handleSearchTerm}/>
-
-                                <span class="icon is-right">
-                                    <SearchIcon style={{trasform:"rotate(90deg)"}}/>
-                                </span>
-                            </div>
-
-  <div>
-    {datas.filter((val )=>{
-      return val.title.toLowerCase().includes(searchTerm.toLowerCase());
-    }).map((val) => {
-      return <p key={val.id}>{val.title}</p>;
-    })}
-  </div>
-  
-  </>);*/
   
 }

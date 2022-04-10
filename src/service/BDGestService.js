@@ -23,6 +23,17 @@ export async function getAllSeries() {
     return list;
 }
 
+export async function getAllAuteurs() {
+    const response = await fetch(API_URL+`/auteur/all`);
+    const data = await response.json();
+    var list =[];
+    data.forEach(element => {
+        list.push(element);
+    });
+    console.log(list);
+    return list;
+}
+
 export async function getAlbumById(id) {
     const response = await fetch(API_URL+`/album/`+id);
     const data = await response.json();
@@ -32,6 +43,13 @@ export async function getAlbumById(id) {
 
 export async function getSerieById(id) {
     const response = await fetch(API_URL+`/serie/`+id);
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+
+export async function getAuteurById(id) {
+    const response = await fetch(API_URL+`/auteur/`+id);
     const data = await response.json();
     console.log(data);
     return data;

@@ -1,3 +1,5 @@
 .albumEl{
-    width: 20%;
+    width: 25%;
+    margin: 0 auto !important;
+    margin-bottom: 20px!important;
 }

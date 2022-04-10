@@ -1,6 +1,5 @@
 import React from 'react';
 import SerieCard from './SerieCard';
-import '../css/SerieList.css'
 import { getAllSeries } from '../service/BDGestService';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -44,7 +43,7 @@ if( loading ){
   return (
     <>
       <div class="mr-5 control has-icons-right" id='searchBar'>
-                          <input class="input is-medium" type="text" placeholder="Chercher un album" onChange={handleSearchTerm} />
+                          <input class="input is-medium" type="text" placeholder="Chercher un série" onChange={handleSearchTerm} />
 
                           <span class="icon is-right">
                               <SearchIcon style={{trasform:"rotate(90deg)"}}/>

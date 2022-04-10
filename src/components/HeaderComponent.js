@@ -27,9 +27,9 @@ export default function HeaderComponent() {
                         <Link to="/serie" class="navbar-item">
                                 Séries
                         </Link>
-                        <a class="navbar-item">
+                        <Link to="/auteur" class="navbar-item">
                             Auteurs
-                        </a>
+                        </Link>
 
                         <a class="navbar-item">
                             Collections
