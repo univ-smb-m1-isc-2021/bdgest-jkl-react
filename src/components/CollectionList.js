@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AlbumCard from './AlbumCard';
 import '../css/AlbumList.css'
-import { getAllAlbums } from '../service/BDGestService';
+import { getAllAlbums, getCollection } from '../service/BDGestService';
 import SearchIcon from '@mui/icons-material/Search';
 import LoadingScreen from './LoadingScreen';
 
@@ -14,7 +14,9 @@ function useFetchData() {
     setLoading(true);
 
     const timer = setTimeout(() => {
-      getAllAlbums().then(data => {
+      let user = sessionStorage.getItem('user')
+      let id = JSON.parse(user)["id"]
+      getCollection(id).then(data => {
         setData(data);
         setLoading(false);
       }).catch(error => {
@@ -31,7 +33,7 @@ function useFetchData() {
   return { loading, data };
 }
 
-export default function AlbumList() {
+export default function CollectionList() {
   const { loading, data } = useFetchData();
   ////TEST RECHERCHE///////
   const [datas, setDatas] = useState([]);
@@ -90,23 +92,3 @@ export default function AlbumList() {
     </>
   );
 }
-  /////////////////////////////////////////////////////////////////////
-  /*return(<>
-  
-  <div class="mr-5 control has-icons-right" id='searchBar'>
-                                <input class="input is-medium" type="text" placeholder="Chercher un album" onChange={handleSearchTerm}/>
-
-                                <span class="icon is-right">
-                                    <SearchIcon style={{trasform:"rotate(90deg)"}}/>
-                                </span>
-                            </div>
-
-  <div>
-    {datas.filter((val )=>{
-      return val.title.toLowerCase().includes(searchTerm.toLowerCase());
-    }).map((val) => {
-      return <p key={val.id}>{val.title}</p>;
-    })}
-  </div>
-  
-  </>);*/
