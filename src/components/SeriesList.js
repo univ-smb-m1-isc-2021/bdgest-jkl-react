@@ -1,5 +1,6 @@
 import React from 'react';
 import SerieCard from './SerieCard';
+import '../css/SerieList.css';
 import { getAllSeries } from '../service/BDGestService';
 import SearchIcon from '@mui/icons-material/Search';
 import LoadingScreen from './LoadingScreen';
