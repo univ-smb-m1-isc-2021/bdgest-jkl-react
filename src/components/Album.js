@@ -10,6 +10,7 @@ import { getCollection } from '../service/BDGestService';
 import {addToCollection} from '../service/BDGestService';
 import {deleteFromCollection} from '../service/BDGestService';
 import LoadingScreen from './LoadingScreen';
+import image from '../asset/images/album.png'
 
 
   
@@ -94,6 +95,12 @@ function useFetchData(id) {
     deleteFromCollection(id, location)
   }
 
+  function renderDate(date) {
+    var date = new Date(date);
+  
+    return format(date, "MMMM do, yyyy");
+  }
+
 
 
   
@@ -122,35 +129,35 @@ function useFetchData(id) {
             <>
                 <HeaderComponent />
                     <div id="bodyAlbum" className="box is-flex">
-                        <img id='image' className='el' src={data.image} alt="album cover" />
+                        <img id='image' className='el' src={data.image!=""?data.image:image} alt="album cover" />
                         <div id='sideInformation' className=' m-5 el'>
                             <div class="tags has-addons">
                                 <span class="tag is-dark is-medium">Série</span>
-                                <span class="tag is-info is-medium">{data.serie}</span>
+                                <span class="tag is-info is-medium">{data.serie!=null?data.serie:"Indisponible"}</span>
                             </div>
                             <div class="tags has-addons">
                                 <span class="tag is-dark is-medium">Titre</span>
-                                <span class="tag is-info is-medium">{data.titre}</span>
+                                <span class="tag is-info is-medium">{data.titre!=null?data.titre:"Indisponible"}</span>
                             </div>
                             <div class="tags has-addons">
                                 <span class="tag is-dark is-medium">Numéro</span>
-                                <span class="tag is-info is-medium">{data.numero}</span>
+                                <span class="tag is-info is-medium">{data.numero!=""?data.numero:"Indisponible"}</span>
                             </div>
                             <div class="tags has-addons">
                                 <span class="tag is-dark is-medium">Auteur</span>
-                                <span class="tag is-info is-medium">{data.auteur}</span>
+                                <span class="tag is-info is-medium">{data.auteur!=null?data.auteur:"Indisponible"}</span>
                             </div>
                             <div class="tags has-addons">
                                 <span class="tag is-dark is-medium">ISBN</span>
-                                <span class="tag is-info is-medium">{data.isbn}</span>
+                                <span class="tag is-info is-medium">{data.isbn!=""?data.isbn:"Indisponible"}</span>
                             </div>
                             <div class="tags has-addons">
                                 <span class="tag is-dark is-medium">Date</span>
-                                <span class="tag is-info is-medium">{data.date}</span>
+                                <span class="tag is-info is-medium">{renderDate(data.creation)}</span>
                             </div>
                             <div className='content'>
                                 <h2 className='tag is-info is-medium'>Description</h2>
-                                <blockquote id='descriptionAlbum'>{data.description}</blockquote>
+                                <blockquote id='descriptionAlbum'>{data.description!="null"?data.description:"Aucune description pour cette album ..."}</blockquote>
                             </div>
     
                             <>
