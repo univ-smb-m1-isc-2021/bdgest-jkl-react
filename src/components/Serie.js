@@ -6,12 +6,71 @@ import { useLocation } from 'react-router-dom';
 import { getSerieById } from '../service/BDGestService';
 import LoadingScreen from './LoadingScreen';
 import AlbumCard from './AlbumCard';
+import CheckSharpIcon from '@mui/icons-material/CheckSharp';
+import CloseSharpIcon from '@mui/icons-material/CloseSharp';
+import { getSerieSuivi}  from '../service/BDGestService';
+import {addSerieSuivi} from '../service/BDGestService';
+import {deleteSerieSuivi} from '../service/BDGestService';
+import { useParams } from 'react-router-dom';
 
 
 
+function Serie() {
+  const { id } = useParams();
+  const [inSerieSuivi, setInSerieSuivi] = React.useState(false);
+
+
+  function isConnected(){
+    if(sessionStorage.getItem('connected') === 'true'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  function addToSerieSuivi(location){
+    let user = sessionStorage.getItem('user')
+    let id = JSON.parse(user)["id"]
+  
+    console.log(location, id)
+    addSerieSuivi(id, location)
+  }
+  
+  
+  function deleteFromSerieSuivi(location){
+    let user = sessionStorage.getItem('user')
+    let id = JSON.parse(user)["id"]
+  
+    deleteSerieSuivi(id, location)
+  }
+  
+  function isInSerieSuivi(location){
+    if(isConnected()){
+      let user = sessionStorage.getItem('user')
+      let id = JSON.parse(user)["id"]
+      console.log("icic")
+      getSerieSuivi(id).then(data => {
+        for (let i = 0; i < data.length; i++) {
+          console.log("la")
+          console.log(data[i])
+          console.log(location)
+          console.log(data[i]["id"])
+          console.log("aledd")
+          if(data[i]["id"] == location){
+            setInSerieSuivi(true)
+            console.log("pouet")
+          }
+        }
+        });
+      }
+  }
 function useFetchData(id) {
   const [loading, setLoading] = React.useState([]);
   const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    isInSerieSuivi(id)
+  },[]);
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -38,9 +97,9 @@ function renderDate(date) {
   return format(date, "MMMM do, yyyy");
 }
 
-function Serie() {
   const location = useLocation().pathname.slice(7);
   const { loading, data } = useFetchData(location);
+  var isUserconnected = isConnected();
 
   if (loading) {
     return (
@@ -85,6 +144,34 @@ function Serie() {
             <h2 className='tag is-danger is-medium'>Description</h2>
             <blockquote id='descriptionAlbum'>{data.description}</blockquote>
           </div>
+          <>
+              {
+                isUserconnected ?
+                <>
+                    {
+                      !inSerieSuivi ?
+                    <button class="button is-success is-outlined" onClick={() => 
+                      {addToSerieSuivi(id); setInSerieSuivi(true)}}>      
+                    <span class="icon is-small" >
+                      <CheckSharpIcon />
+                    </span>
+                    <span>Suivre la serie</span>
+                    </button>
+                    :
+                  <button class="button is-danger is-outlined" onClick={() => {deleteFromSerieSuivi(id); setInSerieSuivi(false)}}>
+                    <span class="icon is-small" >
+                      <CloseSharpIcon />
+                    </span>
+                    <span>Ne plus suivre</span>
+                  </button>
+                    }
+                </>
+                :
+              <div className='content'>
+                  <blockquote>Vous n'êtes pas connecté, connectez vous pour ajouter à une collection</blockquote>
+              </div>
+              }
+             </>
         </div>
       </div>
       <div>

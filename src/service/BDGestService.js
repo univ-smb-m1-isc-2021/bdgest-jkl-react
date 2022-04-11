@@ -158,6 +158,30 @@ export async function getAuteurSuivi(idCompte){
     return data;
 }
 
+export async function addSerieSuivi(idCompte, idSerie){
+    const response = await fetch(API_URL+`/compte/`+idCompte+"/addseriesuivi/"+idSerie);
+    const data = await response.json();
+    console.log(data);
+    console.log("add serie suivi");
+    return data;
+}
+
+export async function deleteSerieSuivi(idCompte, idSerie){
+    const response = await fetch(API_URL+`/compte/`+idCompte+"/deleteseriesuivi/"+idSerie);
+    const data = await response.json();
+    console.log(data);
+    console.log("delete serie suivi");
+    return data;
+}
+
+export async function getSerieSuivi(idCompte){
+    const response = await fetch(API_URL+`/compte/`+idCompte+"/seriesuivi");
+    const data = await response.json();
+    console.log(data);
+    console.log("get serie suivi");
+    return data;
+}
+
 export async function getSignedUser(mailorpseudo){
         const response = await fetch(API_URL+"/compte/getByEmailOrPseudo/"+mailorpseudo);
         const data = await response.json();
