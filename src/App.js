@@ -10,6 +10,7 @@ import SeriePage from './components/SeriePage';
 import AuteurPage from './components/AuteursPage';
 import Serie from './components/Serie';
 import Auteur from './components/Auteur';
+import Collection from './components/CollectionPages';
 
 function App() {
   
@@ -25,6 +26,7 @@ function App() {
         <Route path="/catalogue" element={<CatalogPage />} />
         <Route path="/serie" element={<SeriePage/>} />
         <Route path="/auteur" element={<AuteurPage/>} />
+        <Route path="/collection" element= {<Collection/>} />
       </Routes>
     </div>
   );

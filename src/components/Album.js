@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/Album.css'
 import { format } from "date-fns";
 import HeaderComponent from './HeaderComponent';

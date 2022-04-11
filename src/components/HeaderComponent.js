@@ -33,9 +33,9 @@ export default function HeaderComponent() {
                         </Link>
 
                     {sessionStorage.getItem("connected") ?
-                        <a class="navbar-item">
+                        <Link to="/collection" class="navbar-item">
                             Collections
-                        </a>
+                        </Link>
                         :
                         null
                     }
