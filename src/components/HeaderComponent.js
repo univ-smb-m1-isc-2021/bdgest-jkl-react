@@ -47,7 +47,7 @@ export default function HeaderComponent() {
                                 {sessionStorage.getItem("connected") ?
                                     <div>
                                         <Link to="/" class="button is-primary" onClick={disconnect}>
-                                            <strong>Deconnection</strong>
+                                            <strong>Deconnexion</strong>
                                         </Link>
                                     </div>
 

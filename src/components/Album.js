@@ -1,10 +1,30 @@
+import React, { useEffect } from 'react';
 import React, { useState } from 'react';
 import '../css/Album.css'
 import { format } from "date-fns";
 import HeaderComponent from './HeaderComponent';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getAlbumById } from '../service/BDGestService';
+import CheckSharpIcon from '@mui/icons-material/CheckSharp';
+import CloseSharpIcon from '@mui/icons-material/CloseSharp';
+import { getCollection } from '../service/BDGestService';
+import {addToCollection} from '../service/BDGestService';
+import {deleteFromCollection} from '../service/BDGestService';
 import LoadingScreen from './LoadingScreen';
+
+
+  
+export default function Album(props) {
+  const { id } = useParams();
+  console.log(id);
+  const [inCollection, setInCollection] = React.useState(false);
+  
+
+  React.useEffect(() => {
+    isInCollection(id)
+  },[]);
+  
+
 
 
 function useFetchData(id) {
@@ -18,9 +38,7 @@ function useFetchData(id) {
       getAlbumById(id).then(data => {
         setData(data);
         setLoading(false);
-        console.log(data);
       }).catch(error => {
-        console.log(error);
         setLoading(false);
       });
       clearTimeout(timer);
@@ -35,17 +53,63 @@ function useFetchData(id) {
     return format(date, "MMMM do, yyyy");
     }
 
-function Album() {
-  const location = useLocation().pathname.slice(7);
-  const { loading, data } = useFetchData(location);
+  function isInCollection(location){
+    if(isConnected()){
+      let user = sessionStorage.getItem('user')
+      let id = JSON.parse(user)["id"]
+      console.log("icic")
+      getCollection(id).then(data => {
+        for (let i = 0; i < data.length; i++) {
+          console.log("la")
+          console.log(data[i])
+          if(data[i]["id"] == location){
+            setInCollection(true)
+            console.log("pouet")
+          }
+        }
+        });
+      }
+  }
+
+  function isConnected(){
+    if(sessionStorage.getItem('connected') === 'true'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  function addToUserCollection(location){
+    let user = sessionStorage.getItem('user')
+    let id = JSON.parse(user)["id"]
+
+    console.log(location, id)
+    addToCollection(id, location)
+  }
+  
+
+  function removeFromUserCollection(location){
+    let user = sessionStorage.getItem('user')
+    let id = JSON.parse(user)["id"]
+
+    deleteFromCollection(id, location)
+  }
+
+
+
+  
+  const{loading, data} = useFetchData(id);
+  var isUserconnected = isConnected();
 
   if (loading) {
-    return (
-      <>
-        <LoadingScreen loading={loading} />
-      </>
-    );
+    return (   
+     <>
+      <LoadingScreen loading={loading} />
+    </>
+  );
   }
+
+
 
   if (!data) {
     return (
@@ -53,45 +117,80 @@ function Album() {
         <HeaderComponent />
         <p className='title'>Album introuvable ...</p>
       </>
-    )
+    );
   }
   return (
-    <>
-      <HeaderComponent />
-      <div id="bodyAlbum" className="box is-flex">
-        <img id='image' className='el' src={data.image} alt="album cover" />
-        <div id='sideInformation' className=' m-5 el'>
-          <div class="tags has-addons">
-            <span class="tag is-dark is-medium">Série</span>
-            <span class="tag is-info is-medium">{data.serie}</span>
-          </div>
-          <div class="tags has-addons">
-            <span class="tag is-dark is-medium">Titre</span>
-            <span class="tag is-info is-medium">{data.titre}</span>
-          </div>
-          <div class="tags has-addons">
-            <span class="tag is-dark is-medium">Numéro</span>
-            <span class="tag is-info is-medium">{data.numero}</span>
-          </div>
-          <div class="tags has-addons">
-            <span class="tag is-dark is-medium">Auteur</span>
-            <span class="tag is-info is-medium">{data.auteur}</span>
-          </div>
-          <div class="tags has-addons">
-            <span class="tag is-dark is-medium">ISBN</span>
-            <span class="tag is-info is-medium">{data.isbn}</span>
-          </div>
-          <div class="tags has-addons">
-            <span class="tag is-dark is-medium">Date</span>
-            <span class="tag is-info is-medium">{data.date}</span>
-          </div>
-          <div className='content'>
-            <h2 className='tag is-info is-medium'>Description</h2>
-            <blockquote id='descriptionAlbum'>{data.description}</blockquote>
-          </div>
-        </div>
-      </div>
-    </>
-  )
+            <>
+                <HeaderComponent />
+                    <div id="bodyAlbum" className="box is-flex">
+                        <img id='image' className='el' src={data.image} alt="album cover" />
+                        <div id='sideInformation' className=' m-5 el'>
+                            <div class="tags has-addons">
+                                <span class="tag is-dark is-medium">Série</span>
+                                <span class="tag is-info is-medium">{data.serie}</span>
+                            </div>
+                            <div class="tags has-addons">
+                                <span class="tag is-dark is-medium">Titre</span>
+                                <span class="tag is-info is-medium">{data.titre}</span>
+                            </div>
+                            <div class="tags has-addons">
+                                <span class="tag is-dark is-medium">Numéro</span>
+                                <span class="tag is-info is-medium">{data.numero}</span>
+                            </div>
+                            <div class="tags has-addons">
+                                <span class="tag is-dark is-medium">Auteur</span>
+                                <span class="tag is-info is-medium">{data.auteur}</span>
+                            </div>
+                            <div class="tags has-addons">
+                                <span class="tag is-dark is-medium">ISBN</span>
+                                <span class="tag is-info is-medium">{data.isbn}</span>
+                            </div>
+                            <div class="tags has-addons">
+                                <span class="tag is-dark is-medium">Date</span>
+                                <span class="tag is-info is-medium">{data.date}</span>
+                            </div>
+                            <div className='content'>
+                                <h2 className='tag is-info is-medium'>Description</h2>
+                                <blockquote id='descriptionAlbum'>{data.description}</blockquote>
+                            </div>
+    
+                            <>
+                              {
+                                isUserconnected ?
+                                <>
+                                  {
+                                    !inCollection ?
+                                  <button class="button is-success is-outlined" onClick={() => 
+                                    {addToUserCollection(id); setInCollection(true)}}>      
+                                  <span class="icon is-small" >
+                                    <CheckSharpIcon />
+                                  </span>
+                                  <span>Ajouter à ma collection</span>
+                                  </button>
+                                  :
+                                <button class="button is-danger is-outlined" onClick={() => {removeFromUserCollection(id); setInCollection(false)}}>
+                                  <span class="icon is-small" >
+                                    <CloseSharpIcon />
+                                  </span>
+                                  <span>Supprimer de ma collection</span>
+                                </button>
+                                  }
+                                </>
+                                :
+                              <div className='content'>
+                                  <blockquote>Vous n'êtes pas connecté, connectez vous pour ajouter à une collection</blockquote>
+                              </div>
+                              }
+                              
+    
+    
+                            </>
+    
+                            
+    
+                        </div>
+                    </div>
+            </>
+      );
 }
-export default Album;
+
