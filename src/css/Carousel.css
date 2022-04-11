@@ -1,0 +1,21 @@
+.carousel{
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.inner{
+    white-space: nowrap;
+    transition: transform 0.3s;
+}
+
+.carousel-item{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 600px;
+}
+
+.indicators{
+    display: flex;
+    justify-content: center;
+}

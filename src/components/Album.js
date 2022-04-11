@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import '../css/Album.css'
 import { format } from "date-fns";
 import HeaderComponent from './HeaderComponent';
@@ -27,8 +27,8 @@ export default function Album(props) {
 
 
 function useFetchData(id) {
-  const [loading, setLoading] = useState([]);
-  const [data, setData] = useState([]);
+  const [loading, setLoading] = React.useState([]);
+  const [data, setData] = React.useState([]);
 
   React.useEffect(() => {
     const timer = setTimeout(() => {

@@ -82,7 +82,7 @@ function Serie() {
             <span class="tag is-danger is-medium"> {renderDate(data.debut)}</span>
           </div>
           <div className='content'>
-            <h2 className='tag is-info is-medium'>Description</h2>
+            <h2 className='tag is-danger is-medium'>Description</h2>
             <blockquote id='descriptionAlbum'>{data.description}</blockquote>
           </div>
         </div>
