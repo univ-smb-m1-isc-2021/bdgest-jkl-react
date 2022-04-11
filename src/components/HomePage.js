@@ -15,7 +15,7 @@ function useFetchData() {
       setLoading(true);
   
       const timer = setTimeout(() => {
-        getRandAlbums(3).then(data => {
+        getRandAlbums(8).then(data => {
           setData(data);
           setLoading(false);
         }).catch(error => {

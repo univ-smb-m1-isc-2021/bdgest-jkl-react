@@ -12,6 +12,7 @@ import { getSerieSuivi}  from '../service/BDGestService';
 import {addSerieSuivi} from '../service/BDGestService';
 import {deleteSerieSuivi} from '../service/BDGestService';
 import { useParams } from 'react-router-dom';
+import image from '../asset/images/album.png';
 
 
 
@@ -122,11 +123,11 @@ function renderDate(date) {
     <>
       <HeaderComponent />
       <div id="bodySerie" className="box is-flex">
-        <img id='image' className='el' src={data.image} alt="album cover" />
+        <img id='image' className='el' src={data.image!=""?data.image:image} alt="album cover" />
         <div id='sideInformation' className=' m-5 el'>
           <div class="tags has-addons">
             <span class="tag is-dark is-medium">Série</span>
-            <span class="tag is-danger is-medium">{data.titre}</span>
+            <span class="tag is-danger is-medium">{data.titre!=""?data.titre:"Indisponible"}</span>
           </div>
           <div class="tags has-addons">
             <span class="tag is-dark is-medium">Nombre d'albums</span>
@@ -142,7 +143,7 @@ function renderDate(date) {
           </div>
           <div className='content'>
             <h2 className='tag is-danger is-medium'>Description</h2>
-            <blockquote id='descriptionAlbum'>{data.description}</blockquote>
+            <blockquote id='descriptionAlbum'>{data.description!="null"?data.description:"Pas de description disponible ..."}</blockquote>
           </div>
           <>
               {
