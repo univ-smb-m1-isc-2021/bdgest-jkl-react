@@ -3,12 +3,12 @@
     grid-template-columns: 1fr 1fr;
 }
 
-#auteurTitre{
+#albumTitre,#auteurPasAlbum{
     margin:0 auto !important;
     width: fit-content;
 }
 
-#bodySerie{
+#bodyAuteur{
     width: 50%;
     margin: 0 auto;
     margin-bottom: 10px;

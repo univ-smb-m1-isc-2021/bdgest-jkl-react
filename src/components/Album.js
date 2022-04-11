@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import '../css/Album.css'
+import { format } from "date-fns";
 import HeaderComponent from './HeaderComponent';
 import { useParams } from 'react-router-dom';
 import { getAlbumById } from '../service/BDGestService';
@@ -8,6 +10,9 @@ import CloseSharpIcon from '@mui/icons-material/CloseSharp';
 import { getCollection } from '../service/BDGestService';
 import {addToCollection} from '../service/BDGestService';
 import {deleteFromCollection} from '../service/BDGestService';
+import LoadingScreen from './LoadingScreen';
+
+
   
 export default function Album(props) {
   const { id } = useParams();
@@ -19,23 +24,34 @@ export default function Album(props) {
     isInCollection(id)
   },[]);
   
-  function useFetchData(id){
-    
-    const [loading, setLoading] = React.useState([]);
-    const [data, setData] = React.useState([]);
-  
-    React.useEffect(() => {
+
+
+
+function useFetchData(id) {
+  const [loading, setLoading] = useState([]);
+  const [data, setData] = useState([]);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
       setLoading(true);
+
       getAlbumById(id).then(data => {
         setData(data);
         setLoading(false);
       }).catch(error => {
         setLoading(false);
       });
-    },[]);
+      clearTimeout(timer);
+    }, 1000);
+  }, []);
+  return { loading, data };
+}
+
+  function renderDate(date){
+    var date = new Date(date);
   
-    return { loading, data };
-  }
+    return format(date, "MMMM do, yyyy");
+    }
 
   function isInCollection(location){
     if(isConnected()){
@@ -85,95 +101,96 @@ export default function Album(props) {
   const{loading, data} = useFetchData(id);
   var isUserconnected = isConnected();
 
-    if( loading ){
-        return (
-          <>
-            <HeaderComponent/>
-            <p className='title'>Chargement...</p>
-          </>
-        );
-      }
-    
-      if(!data){
-        return(
-          <>
-            <HeaderComponent/>
-            <p className='title'>Album introuvable ...</p>
-          </>
-        )
-      }
-    return (
-        <>
-            <HeaderComponent />
-                <div id="bodyAlbum" className="box is-flex">
-                    <img id='image' className='el' src={data.image} alt="album cover" />
-                    <div id='sideInformation' className=' m-5 el'>
-                        <div class="tags has-addons">
-                            <span class="tag is-dark is-medium">Série</span>
-                            <span class="tag is-info is-medium">{data.serie}</span>
-                        </div>
-                        <div class="tags has-addons">
-                            <span class="tag is-dark is-medium">Titre</span>
-                            <span class="tag is-info is-medium">{data.titre}</span>
-                        </div>
-                        <div class="tags has-addons">
-                            <span class="tag is-dark is-medium">Numéro</span>
-                            <span class="tag is-info is-medium">{data.numero}</span>
-                        </div>
-                        <div class="tags has-addons">
-                            <span class="tag is-dark is-medium">Auteur</span>
-                            <span class="tag is-info is-medium">{data.auteur}</span>
-                        </div>
-                        <div class="tags has-addons">
-                            <span class="tag is-dark is-medium">ISBN</span>
-                            <span class="tag is-info is-medium">{data.isbn}</span>
-                        </div>
-                        <div class="tags has-addons">
-                            <span class="tag is-dark is-medium">Date</span>
-                            <span class="tag is-info is-medium">{data.date}</span>
-                        </div>
-                        <div className='content'>
-                            <h2 className='tag is-info is-medium'>Description</h2>
-                            <blockquote id='descriptionAlbum'>{data.description}</blockquote>
-                        </div>
+  if (loading) {
+    return (   
+     <>
+      <LoadingScreen loading={loading} />
+    </>
+  );
+  }
 
-                        <>
-                          {
-                            isUserconnected ?
+
+
+  if (!data) {
+    return (
+      <>
+        <HeaderComponent />
+        <p className='title'>Album introuvable ...</p>
+      </>
+    );
+  }
+  return (
+            <>
+                <HeaderComponent />
+                    <div id="bodyAlbum" className="box is-flex">
+                        <img id='image' className='el' src={data.image} alt="album cover" />
+                        <div id='sideInformation' className=' m-5 el'>
+                            <div class="tags has-addons">
+                                <span class="tag is-dark is-medium">Série</span>
+                                <span class="tag is-info is-medium">{data.serie}</span>
+                            </div>
+                            <div class="tags has-addons">
+                                <span class="tag is-dark is-medium">Titre</span>
+                                <span class="tag is-info is-medium">{data.titre}</span>
+                            </div>
+                            <div class="tags has-addons">
+                                <span class="tag is-dark is-medium">Numéro</span>
+                                <span class="tag is-info is-medium">{data.numero}</span>
+                            </div>
+                            <div class="tags has-addons">
+                                <span class="tag is-dark is-medium">Auteur</span>
+                                <span class="tag is-info is-medium">{data.auteur}</span>
+                            </div>
+                            <div class="tags has-addons">
+                                <span class="tag is-dark is-medium">ISBN</span>
+                                <span class="tag is-info is-medium">{data.isbn}</span>
+                            </div>
+                            <div class="tags has-addons">
+                                <span class="tag is-dark is-medium">Date</span>
+                                <span class="tag is-info is-medium">{data.date}</span>
+                            </div>
+                            <div className='content'>
+                                <h2 className='tag is-info is-medium'>Description</h2>
+                                <blockquote id='descriptionAlbum'>{data.description}</blockquote>
+                            </div>
+    
                             <>
                               {
-                                !inCollection ?
-                              <button class="button is-success is-outlined" onClick={() => 
-                                {addToUserCollection(id); setInCollection(true)}}>      
-                              <span class="icon is-small" >
-                                <CheckSharpIcon />
-                              </span>
-                              <span>Ajouter à ma collection</span>
-                              </button>
-                              :
-                            <button class="button is-danger is-outlined" onClick={() => {removeFromUserCollection(id); setInCollection(false)}}>
-                              <span class="icon is-small" >
-                                <CloseSharpIcon />
-                              </span>
-                              <span>Supprimer de ma collection</span>
-                            </button>
+                                isUserconnected ?
+                                <>
+                                  {
+                                    !inCollection ?
+                                  <button class="button is-success is-outlined" onClick={() => 
+                                    {addToUserCollection(id); setInCollection(true)}}>      
+                                  <span class="icon is-small" >
+                                    <CheckSharpIcon />
+                                  </span>
+                                  <span>Ajouter à ma collection</span>
+                                  </button>
+                                  :
+                                <button class="button is-danger is-outlined" onClick={() => {removeFromUserCollection(id); setInCollection(false)}}>
+                                  <span class="icon is-small" >
+                                    <CloseSharpIcon />
+                                  </span>
+                                  <span>Supprimer de ma collection</span>
+                                </button>
+                                  }
+                                </>
+                                :
+                              <div className='content'>
+                                  <blockquote>Vous n'êtes pas connecté, connectez vous pour ajouter à une collection</blockquote>
+                              </div>
                               }
+                              
+    
+    
                             </>
-                            :
-                          <div className='content'>
-                              <blockquote>Vous n'êtes pas connecté, connectez vous pour ajouter à une collection</blockquote>
-                          </div>
-                          }
-                          
-
-
-                        </>
-
-                        
-
+    
+                            
+    
+                        </div>
                     </div>
-                </div>
-        </>
-    )
+            </>
+      );
 }
 

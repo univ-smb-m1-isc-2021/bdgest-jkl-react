@@ -80,8 +80,10 @@ export async function signin(emailorpassword,password) {
     });
 
     const data = await response;
-    getSignedUser(emailorpassword);
-    console.log(data);
+    if(data.status === 200){
+        getSignedUser(emailorpassword);
+        console.log(data);
+    }
     return data;
 }
 

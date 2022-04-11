@@ -11,7 +11,7 @@ export default function AlbumCard(props) {
       <Link to={`/album/${props.album.id}`}>
           <div className="card">
             <div className="card-image">
-              <img src={props.album.image} width="200" alt={props.album.titre} />
+              <img src={props.album.image} alt={props.album.titre} />
             </div>
             <div className="card-content">
             <div class="tags has-addons">
