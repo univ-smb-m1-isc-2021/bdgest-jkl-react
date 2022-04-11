@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../css/Album.css'
 import HeaderComponent from './HeaderComponent';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getAlbumById } from '../service/BDGestService';
+import CheckSharpIcon from '@mui/icons-material/CheckSharp';
+import CloseSharpIcon from '@mui/icons-material/CloseSharp';
+import { getCollection } from '../service/BDGestService';
+import {addToCollection} from '../service/BDGestService';
+import {deleteFromCollection} from '../service/BDGestService';
+  
+export default function Album(props) {
+  const { id } = useParams();
+  console.log(id);
+  const [inCollection, setInCollection] = React.useState(false);
+  
 
-
-
-function useFetchData(id){
+  React.useEffect(() => {
+    isInCollection(id)
+  },[]);
+  
+  function useFetchData(id){
+    
     const [loading, setLoading] = React.useState([]);
     const [data, setData] = React.useState([]);
   
@@ -15,9 +29,7 @@ function useFetchData(id){
       getAlbumById(id).then(data => {
         setData(data);
         setLoading(false);
-        console.log(data);
       }).catch(error => {
-        console.log(error);
         setLoading(false);
       });
     },[]);
@@ -25,9 +37,53 @@ function useFetchData(id){
     return { loading, data };
   }
 
-function Album() {
-    const location = useLocation().pathname.slice(7);
-    const{loading, data} = useFetchData(location);
+  function isInCollection(location){
+    if(isConnected()){
+      let user = sessionStorage.getItem('user')
+      let id = JSON.parse(user)["id"]
+      console.log("icic")
+      getCollection(id).then(data => {
+        for (let i = 0; i < data.length; i++) {
+          console.log("la")
+          console.log(data[i])
+          if(data[i]["id"] == location){
+            setInCollection(true)
+            console.log("pouet")
+          }
+        }
+        });
+      }
+  }
+
+  function isConnected(){
+    if(sessionStorage.getItem('connected') === 'true'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  function addToUserCollection(location){
+    let user = sessionStorage.getItem('user')
+    let id = JSON.parse(user)["id"]
+
+    console.log(location, id)
+    addToCollection(id, location)
+  }
+  
+
+  function removeFromUserCollection(location){
+    let user = sessionStorage.getItem('user')
+    let id = JSON.parse(user)["id"]
+
+    deleteFromCollection(id, location)
+  }
+
+
+
+  
+  const{loading, data} = useFetchData(id);
+  var isUserconnected = isConnected();
 
     if( loading ){
         return (
@@ -80,9 +136,44 @@ function Album() {
                             <h2 className='tag is-info is-medium'>Description</h2>
                             <blockquote id='descriptionAlbum'>{data.description}</blockquote>
                         </div>
+
+                        <>
+                          {
+                            isUserconnected ?
+                            <>
+                              {
+                                !inCollection ?
+                              <button class="button is-success is-outlined" onClick={() => 
+                                {addToUserCollection(id); setInCollection(true)}}>      
+                              <span class="icon is-small" >
+                                <CheckSharpIcon />
+                              </span>
+                              <span>Ajouter à ma collection</span>
+                              </button>
+                              :
+                            <button class="button is-danger is-outlined" onClick={() => {removeFromUserCollection(id); setInCollection(false)}}>
+                              <span class="icon is-small" >
+                                <CloseSharpIcon />
+                              </span>
+                              <span>Supprimer de ma collection</span>
+                            </button>
+                              }
+                            </>
+                            :
+                          <div className='content'>
+                              <blockquote>Vous n'êtes pas connecté, connectez vous pour ajouter à une collection</blockquote>
+                          </div>
+                          }
+                          
+
+
+                        </>
+
+                        
+
                     </div>
                 </div>
         </>
     )
 }
-export default Album;
+
