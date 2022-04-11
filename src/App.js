@@ -9,6 +9,7 @@ import CatalogPage from './components/CatalogPage';
 import SeriePage from './components/SeriePage';
 import AuteurPage from './components/AuteursPage';
 import Serie from './components/Serie';
+import Auteur from './components/Auteur';
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/album/:id" element={<Album />} />
         <Route path="/serie/:id" element={<Serie />} />
+        <Route path="/auteur/:id" element={<Auteur />} />
         <Route path="/login" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/catalogue" element={<CatalogPage />} />
