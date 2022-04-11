@@ -12,6 +12,18 @@ export async function getAllAlbums() {
     return list;
 }
 
+export async function getRandAlbums(nb) {
+    const response = await fetch(API_URL+`/album/random/`+nb);
+    const data = await response.json();
+    //console.log(data);
+    var list =[];
+    data.forEach(element => {
+        list.push(element);
+    });
+    console.log(list);
+    return list;
+}
+
 export async function getAllSeries() {
     const response = await fetch(API_URL+`/serie/all`);
     const data = await response.json();
