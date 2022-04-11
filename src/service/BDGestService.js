@@ -134,6 +134,30 @@ export async function getCollection(idCompte){
     return data;
 }
 
+export async function addAuteurSuivi(idCompte,idAuteur){
+    const response = await fetch(API_URL+`/compte/`+idCompte+"/addauteursuivi/"+idAuteur);
+    const data = await response.json();
+    console.log("add auteur suivi");
+    console.log(data);
+    return data;
+}
+
+export async function deleteAuteurSuivi(idCompte,idAuteur){
+    const response = await fetch(API_URL+`/compte/`+idCompte+"/deleteauteursuivi/"+idAuteur);
+    const data = await response.json();
+    console.log(data);
+    console.log("delete auteur suivi");
+    return data;
+}
+
+export async function getAuteurSuivi(idCompte){
+    const response = await fetch(API_URL+`/compte/`+idCompte+"/auteursuivi");
+    const data = await response.json();
+    console.log(data);
+    console.log("get auteur suivi");
+    return data;
+}
+
 export async function getSignedUser(mailorpseudo){
         const response = await fetch(API_URL+"/compte/getByEmailOrPseudo/"+mailorpseudo);
         const data = await response.json();

@@ -13,7 +13,7 @@ import LoadingScreen from './LoadingScreen';
 
 
   
-export default function Album(props) {
+export default function Album() {
   const { id } = useParams();
   console.log(id);
   const [inCollection, setInCollection] = React.useState(false);
